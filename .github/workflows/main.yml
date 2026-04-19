@@ -32,28 +32,28 @@ jobs:
           set -euxo pipefail
 
           # Determine the current kernel version
-          echo "KERNEL_VERSION=$(grep -m1 '^SUBLEVEL =' ./Makefile | awk '{print $3}')" >> $GITHUB_ENV
+          # echo "KERNEL_VERSION=$(grep -m1 '^SUBLEVEL =' ./Makefile | awk '{print $3}')" >> $GITHUB_ENV
 
           # Integrate WildKSU
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
          
           # Integrate SuSFS
-          #git clone --depth=1 https://gitlab.com/simonpunk/susfs4ksu.git -b gki-android13-5.15
+          # git clone --depth=1 https://gitlab.com/simonpunk/susfs4ksu.git -b gki-android13-5.15
 
-          #SUSFS_KERNEL_PATCH="susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.15.patch"
-          #patch -p1 < "$SUSFS_KERNEL_PATCH"
+          # SUSFS_KERNEL_PATCH="susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.15.patch"
+          # patch -p1 < "$SUSFS_KERNEL_PATCH"
 
-          #mkdir -p fs
-          #mkdir -p include/linux
+          # mkdir -p fs
+          # mkdir -p include/linux
 
           # Always replace fs/susfs.c
-          #cp -f susfs4ksu/kernel_patches/fs/susfs.c fs/susfs.c
+          # cp -f susfs4ksu/kernel_patches/fs/susfs.c fs/susfs.c
 
           # Always replace include/linux/susfs.h
-          #cp -f susfs4ksu/kernel_patches/include/linux/susfs.h include/linux/susfs.h
+          # cp -f susfs4ksu/kernel_patches/include/linux/susfs.h include/linux/susfs.h
 
           # Always replace include/linux/susfs_def.h
-          £cp -f susfs4ksu/kernel_patches/include/linux/susfs_def.h include/linux/susfs_def.h
+          # cp -f susfs4ksu/kernel_patches/include/linux/susfs_def.h include/linux/susfs_def.h
   
           #for f in fs/susfs.c include/linux/susfs.h include/linux/susfs_def.h; do
           #  if [ -f "$f" ]; then echo "Found: $f"; else echo "Missing: $f"; fi
