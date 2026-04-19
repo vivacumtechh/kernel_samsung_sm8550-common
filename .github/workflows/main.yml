@@ -9,6 +9,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4 
 
+      - name: Cleaning junk files
+        uses: rokibhasansagar/slimhub_actions@v25.42.5
+      
       - name: Set up the toolchain
         run: |
           sudo apt update
@@ -115,4 +118,8 @@ jobs:
         with:
           name: ${{steps.package.outputs.zip_name}}
           path: anykernel/
-          
+
+      - name: Cleanup
+        run: |
+          sudo rm -rf *
+        
